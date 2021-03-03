@@ -13,7 +13,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'flex-end'
     },
-    
+
     dialog: {
         overflow: 'hidden'
     }
@@ -35,9 +35,7 @@ export const AddNewCVModal = (props) => {
     }
 
     return (
-        <Dialog
-            maxWidth='md'
-            open={props.open}>
+        <Dialog maxWidth='md' open={props.open}>
 
             <DialogTitle><Typography variant='h5'>NEW CV</Typography></DialogTitle>
 
@@ -139,9 +137,9 @@ export const AddNewCVModal = (props) => {
                             <Grid item lg={12} xs={12}>
                                 <Button variant='contained'
                                     color='primary'
-                                    startIcon={<DoneIcon/>}
+                                    startIcon={<DoneIcon />}
                                     onClick={null}>
-                                        Create cv
+                                    Create cv
                                     </Button>
                             </Grid>
                         </Grid>
