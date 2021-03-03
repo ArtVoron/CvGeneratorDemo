@@ -1,24 +1,18 @@
-import logo from './logo.svg';
+import { Container, Grid } from '@material-ui/core';
+import { Header } from './components/header/Header';
 import './App.css';
+import { MainContent } from './components/mainContent/MainContent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container maxWidth='lg'style={{ marginTop: 24 }}>
+        <Grid container spacing={3}>
+          <Header />
+          <MainContent />
+        </Grid>
+      </Container>
+    </>
   );
 }
 
