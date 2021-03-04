@@ -6,6 +6,11 @@ import reportWebVitals from './reportWebVitals';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { createStore } from "redux";
+import { saveState,loadState } from "./localStorage/localStorage";
+
 
 const theme = createMuiTheme({
   palette: {
@@ -21,10 +26,24 @@ const theme = createMuiTheme({
   },
 });
 
+const persistedState=loadState();
+
+const store = createStore(
+  persistedState
+)
+
+store.subscribe(()=>{
+  saveState(store.getState())
+})
+
+
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </React.StrictMode>
   </ThemeProvider>,
   document.getElementById('root')

@@ -2,6 +2,7 @@ import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { AddNewCVModal } from '../modal/AddNewCVMoval';
 import { useState } from "react";
 import AddIcon from '@material-ui/icons/Add';
+import { Header } from "../header/Header";
 
 const styles = {
     button: {
@@ -19,6 +20,7 @@ export const MainContent = () => {
 
     return (
         <>
+            <Header />
             <AddNewCVModal
                 open={showModal}
                 close={modalHandler} />
@@ -37,7 +39,7 @@ export const MainContent = () => {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item lg={12} xs={2}>
+            <Grid item lg={12} xs={12}>
                 <Card>
                     <CardContent>
                         <Typography>Modul 2</Typography>

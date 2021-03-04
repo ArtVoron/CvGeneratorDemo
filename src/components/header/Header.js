@@ -1,5 +1,6 @@
 import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import ViewCompactIcon from '@material-ui/icons/ViewCompact';
+import { NavLink } from 'react-router-dom';
 
 const styles = {
     title: {
@@ -12,8 +13,15 @@ const styles = {
     },
     icon: {
         fontSize: 56,
-        color:'#5D6D7E'
+        color: '#5D6D7E'
+    },
+    titleText:{
+        textDecoration:'none'
     }
+}
+
+let showListCv = () => {
+    window.location.href = '/list-cv'
 }
 
 export const Header = () => {
@@ -25,13 +33,18 @@ export const Header = () => {
                     <CardContent>
                         <Grid container spacing={3}>
                             <Grid item lg={4} xs={4}>
-                                <ViewCompactIcon style={styles.icon} />
+                                <NavLink to="/">
+                                    <ViewCompactIcon style={styles.icon} />
+                                </NavLink>
                             </Grid>
                             <Grid item lg={4} xs={4} style={styles.title}>
-                                <Typography variant='h5'>ATB COMPANY</Typography>
+                                <NavLink to="/" style={styles.titleText}>
+                                    <Typography variant='h5'>ATB COMPANY</Typography>
+                                </NavLink>
                             </Grid>
                             <Grid item lg={4} xs={4} style={styles.cv}>
-                                <Button variant='outlined'>List CV's</Button>
+                                <Button variant='outlined'
+                                    onClick={() => showListCv()}>List CV's</Button>
                             </Grid>
                         </Grid>
                     </CardContent>
