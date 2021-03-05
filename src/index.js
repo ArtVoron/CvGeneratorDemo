@@ -28,6 +28,8 @@ const theme = createMuiTheme({
 
 const persistedState=loadState();
 
+//text for conflict
+
 // const store = createStore(
 //   persistedState
 // )
