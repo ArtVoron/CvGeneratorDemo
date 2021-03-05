@@ -28,13 +28,13 @@ const theme = createMuiTheme({
 
 const persistedState=loadState();
 
-const store = createStore(
-  persistedState
-)
+// const store = createStore(
+//   persistedState
+// )
 
-store.subscribe(()=>{
-  saveState(store.getState())
-})
+// store.subscribe(()=>{
+//   saveState(store.getState())
+// })
 
 
 
