@@ -29,6 +29,9 @@ const theme = createMuiTheme({
 const persistedState=loadState();
 
 //text for conflict
+//test text
+//test text 2
+//test text branch test2
 
 // const store = createStore(
 //   persistedState
