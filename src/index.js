@@ -1,32 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { BrowserRouter } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { createStore } from "redux";
-import { saveState,loadState } from "./localStorage/localStorage";
+import { ThemeProvider } from "@material-ui/styles";
 
+import App from "./App";
+import { MuiTheme } from "./constants/MuiTheme";
+import reportWebVitals from "./reportWebVitals";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#3939BB',
-    },
-    secondary: {
-      main: '#4CAF50',
-    },
-    default: {
-      main: '#FAFAFA'
-    }
-  },
-});
-
-const persistedState=loadState();
+// const persistedState = loadState();
 
 // const store = createStore(
 //   persistedState
@@ -36,16 +18,15 @@ const persistedState=loadState();
 //   saveState(store.getState())
 // })
 
-
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={MuiTheme}>
     <React.StrictMode>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </React.StrictMode>
   </ThemeProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
