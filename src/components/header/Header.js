@@ -35,39 +35,37 @@ export const Header = () => {
   };
 
   return (
-    <>
-      <Grid item lg={12} xs={12}>
+    <Grid item lg={12} xs={12}>
+      <CardContent>
         <CardContent>
-          <CardContent>
-            <Grid container spacing={3}>
-              <Grid item lg={4} xs={4}>
-                <ViewCompactIcon
-                  style={styles.icon}
-                  onClick={() => {
-                    toMainPage();
-                  }}
-                />
-              </Grid>
-              <Grid item lg={4} xs={4} style={styles.title}>
-                <Typography
-                  variant="h5"
-                  style={styles.titleText}
-                  onClick={() => {
-                    toMainPage();
-                  }}
-                >
-                  ATB COMPANY
-                </Typography>
-              </Grid>
-              <Grid item lg={4} xs={4} style={styles.cv}>
-                <Button variant="outlined" onClick={() => showListCv()}>
-                  List CV's
-                </Button>
-              </Grid>
+          <Grid container spacing={3}>
+            <Grid item lg={4} xs={4}>
+              <ViewCompactIcon
+                style={styles.icon}
+                onClick={() => {
+                  toMainPage();
+                }}
+              />
             </Grid>
-          </CardContent>
+            <Grid item lg={4} xs={4} style={styles.title}>
+              <Typography
+                variant="h5"
+                style={styles.titleText}
+                onClick={() => {
+                  toMainPage();
+                }}
+              >
+                ATB COMPANY
+              </Typography>
+            </Grid>
+            <Grid item lg={4} xs={4} style={styles.cv}>
+              <Button variant="outlined" onClick={() => showListCv()}>
+                List CV's
+              </Button>
+            </Grid>
+          </Grid>
         </CardContent>
-      </Grid>
-    </>
+      </CardContent>
+    </Grid>
   );
 };

@@ -2,16 +2,18 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import { Container, Grid } from "@material-ui/core";
 
-import { ListCv } from "./components/cv/ListCv";
+import { ListCv } from "./pages/ListCv";
 import { PrintCv } from "./components/cv/PrintCv";
 import { ViewCv } from "./components/cv/ViewCv";
-import { MainContent } from "./components/mainContent/MainContent";
+import { Header } from "./components/header/Header";
+import { MainContent } from "./pages/MainContent";
 import { Routers } from "./constants/Routers";
 
 function App() {
   return (
     <Container maxWidth="lg" style={{ marginTop: 24 }}>
       <Grid container spacing={3}>
+        <Header />
         <Switch>
           <Route path={Routers.LIST_CV_PAGE_ROUTE} exact component={ListCv} />
           <Route path={Routers.PRINT_CV_PAGE_ROUTE} exact component={PrintCv} />
