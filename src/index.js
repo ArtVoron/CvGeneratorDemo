@@ -1,29 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "@material-ui/styles";
+import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
 import { MuiTheme } from "./constants/MuiTheme";
+import { store, persistor } from "./redux/store/Store";
 import reportWebVitals from "./reportWebVitals";
-
-// const persistedState = loadState();
-
-// const store = createStore(
-//   persistedState
-// )
-
-// store.subscribe(()=>{
-//   saveState(store.getState())
-// })
 
 ReactDOM.render(
   <ThemeProvider theme={MuiTheme}>
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>
   </ThemeProvider>,
   document.getElementById("root")

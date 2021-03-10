@@ -2,12 +2,12 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import { Container, Grid } from "@material-ui/core";
 
-import { ListCv } from "./pages/ListCv";
-import { PrintCv } from "./components/cv/PrintCv";
-import { ViewCv } from "./components/cv/ViewCv";
 import { Header } from "./components/header/Header";
-import { MainContent } from "./pages/MainContent";
 import { Routers } from "./constants/Routers";
+import { ListCv } from "./pages/ListCv";
+import { MainContent } from "./pages/MainContent";
+import { PrintCv } from "./pages/PrintCv";
+import { ViewCv } from "./pages/ViewCv";
 
 function App() {
   return (
