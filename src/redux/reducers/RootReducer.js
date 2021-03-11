@@ -1,17 +1,17 @@
+import AsyncStorage from "@react-native-community/async-storage";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
-import { storage } from "redux-persist/lib/storage";
 
-// import someReducer from './reducers'
+import cvsReducer from "./cvsReducer";
 
 const persistConfig = {
   key: "root",
-  storage,
-  whitelist: ["someName"],
+  storage: AsyncStorage,
+  whitelist: ["cv"],
 };
 
 const rootReducer = combineReducers({
-  // someName: someReducer,
+  cv: cvsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

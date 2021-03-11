@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, CardContent, Grid, Typography } from "@material-ui/core";
 import ViewCompactIcon from "@material-ui/icons/ViewCompact";
 
-export const MainHeader = () => {
+export const Header = () => {
   const history = useHistory();
 
   const showListCv = () => {
@@ -22,9 +22,7 @@ export const MainHeader = () => {
             <Grid item lg={4} xs={4}>
               <ViewCompactIcon
                 style={{ fontSize: 56, color: "#5D6D7E", cursor: "pointer" }}
-                onClick={() => {
-                  toMainPage();
-                }}
+                onClick={toMainPage}
               />
             </Grid>
             <Grid
@@ -36,9 +34,7 @@ export const MainHeader = () => {
               <Typography
                 variant="h5"
                 style={{ textDecoration: "none", cursor: "pointer" }}
-                onClick={() => {
-                  toMainPage();
-                }}
+                onClick={toMainPage}
               >
                 ATB COMPANY
               </Typography>

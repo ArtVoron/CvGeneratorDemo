@@ -16,6 +16,8 @@ import AddIcon from "@material-ui/icons/Add";
 import DoneIcon from "@material-ui/icons/Done";
 import RemoveIcon from "@material-ui/icons/Remove";
 
+// import { createCV } from "../../../redux/actions/actions";
+
 const styles = {
   button: {
     margin: "0px 5px",
@@ -31,7 +33,7 @@ const styles = {
   },
 };
 
-export const CreateCv = ({ open, close }) => {
+export const CreateCvModal = ({ open, close, createCV }) => {
   const [countFieldSkills, setCountFieldSkills] = useState(2);
   const [countFieldProgects, setCountFieldProgects] = useState(2);
   const [countProgects] = useState(1);
@@ -48,13 +50,20 @@ export const CreateCv = ({ open, close }) => {
   };
 
   const handleForSubmit = (e) => {
-    const skillsFields = [];
-    // const progectsFields = [];
-    Array.from(Array(countFieldSkills).keys()).forEach((element) => {
-      debugger;
-      skillsFields.push(e.target[`skill${element}`].value);
-    });
+    const newCV = {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      experience: e.target.experience.value,
+    };
+
     debugger;
+    createCV(newCV);
+    // const skillsFields = [];
+    // const progectsFields = [];
+    // Array.from(Array(countFieldSkills).keys()).forEach((element) => {
+    //   debugger;
+    //   skillsFields.push(e.target[`skill${element}`].value);
+    // });
   };
 
   return (
