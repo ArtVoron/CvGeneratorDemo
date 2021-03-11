@@ -7,12 +7,12 @@ import { ThemeProvider } from "@material-ui/styles";
 import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
-import { MuiTheme } from "./constants/MuiTheme";
-import { store, persistor } from "./redux/store/Store";
+import { muiTheme } from "./constants/muiTheme";
+import { store, persistor } from "./redux/store/store";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <ThemeProvider theme={MuiTheme}>
+  <ThemeProvider theme={muiTheme}>
     <React.StrictMode>
       <Provider store={store}>
         <BrowserRouter>

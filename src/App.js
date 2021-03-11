@@ -2,24 +2,24 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import { Container, Grid } from "@material-ui/core";
 
-import { Header } from "./components/header/Header";
-import { Routers } from "./constants/Routers";
-import { ListCv } from "./pages/ListCv";
+import { MainHeader } from "./components/headers/MainHeader";
+import { routers } from "./constants/routers";
+import { ListCv } from "./pages/ListCVs";
 import { MainContent } from "./pages/MainContent";
-import { PrintCv } from "./pages/PrintCv";
-import { ViewCv } from "./pages/ViewCv";
+import { PrintCv } from "./pages/PrintCV";
+import { ViewCv } from "./pages/ViewCV";
 
 function App() {
   return (
     <Container maxWidth="lg" style={{ marginTop: 24 }}>
       <Grid container spacing={3}>
-        <Header />
+        <MainHeader />
         <Switch>
-          <Route path={Routers.LIST_CV_PAGE_ROUTE} exact component={ListCv} />
-          <Route path={Routers.PRINT_CV_PAGE_ROUTE} exact component={PrintCv} />
-          <Route path={Routers.VIEW_CV_PAGE_ROUTE} exact component={ViewCv} />
-          <Route path={Routers.MAIN_PAGE_ROUTE} exact component={MainContent} />
-          <Redirect to={Routers.MAIN_PAGE_ROUTE} />
+          <Route path={routers.LIST_CV_PAGE_ROUTE} exact component={ListCv} />
+          <Route path={routers.PRINT_CV_PAGE_ROUTE} exact component={PrintCv} />
+          <Route path={routers.VIEW_CV_PAGE_ROUTE} exact component={ViewCv} />
+          <Route path={routers.MAIN_PAGE_ROUTE} exact component={MainContent} />
+          <Redirect to={routers.MAIN_PAGE_ROUTE} />
         </Switch>
       </Grid>
     </Container>

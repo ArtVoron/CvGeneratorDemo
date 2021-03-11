@@ -31,7 +31,7 @@ const styles = {
   },
 };
 
-export const AddNewCVModal = ({ open, close }) => {
+export const CreateCv = ({ open, close }) => {
   const [countFieldSkills, setCountFieldSkills] = useState(2);
   const [countFieldProgects, setCountFieldProgects] = useState(2);
   const [countProgects] = useState(1);

@@ -3,27 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, CardContent, Grid, Typography } from "@material-ui/core";
 import ViewCompactIcon from "@material-ui/icons/ViewCompact";
 
-const styles = {
-  title: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  cv: {
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  icon: {
-    fontSize: 56,
-    color: "#5D6D7E",
-    cursor: "pointer",
-  },
-  titleText: {
-    textDecoration: "none",
-    cursor: "pointer",
-  },
-};
-
-export const Header = () => {
+export const MainHeader = () => {
   const history = useHistory();
 
   const showListCv = () => {
@@ -41,16 +21,21 @@ export const Header = () => {
           <Grid container spacing={3}>
             <Grid item lg={4} xs={4}>
               <ViewCompactIcon
-                style={styles.icon}
+                style={{ fontSize: 56, color: "#5D6D7E", cursor: "pointer" }}
                 onClick={() => {
                   toMainPage();
                 }}
               />
             </Grid>
-            <Grid item lg={4} xs={4} style={styles.title}>
+            <Grid
+              item
+              lg={4}
+              xs={4}
+              style={{ textDecoration: "none", cursor: "pointer" }}
+            >
               <Typography
                 variant="h5"
-                style={styles.titleText}
+                style={{ textDecoration: "none", cursor: "pointer" }}
                 onClick={() => {
                   toMainPage();
                 }}
@@ -58,7 +43,12 @@ export const Header = () => {
                 ATB COMPANY
               </Typography>
             </Grid>
-            <Grid item lg={4} xs={4} style={styles.cv}>
+            <Grid
+              item
+              lg={4}
+              xs={4}
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
               <Button variant="outlined" onClick={() => showListCv()}>
                 List CV's
               </Button>
