@@ -27,7 +27,7 @@ export default function cvsReducer(state = initialState, action) {
       ];
 
     case ActionsTypes.DELETE_CV:
-      return state.filter((todo) => todo.id !== action.id);
+      return state.filter((cv) => cv.id !== action.id);
 
     case ActionsTypes.EDIT_CV:
       return state.map((todo) =>

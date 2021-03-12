@@ -7,11 +7,11 @@ import cvsReducer from "./cvsReducer";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["cv"],
+  // whitelist: ["cv"],
 };
 
 const rootReducer = combineReducers({
-  cv: cvsReducer,
+  cvs: cvsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

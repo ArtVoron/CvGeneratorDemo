@@ -6,10 +6,6 @@ import ViewCompactIcon from "@material-ui/icons/ViewCompact";
 export const Header = () => {
   const history = useHistory();
 
-  const showListCv = () => {
-    history.push("/list-cv");
-  };
-
   const toMainPage = () => {
     history.push("/main");
   };
@@ -29,10 +25,14 @@ export const Header = () => {
               item
               lg={4}
               xs={4}
-              style={{ textDecoration: "none", cursor: "pointer" }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItem: "center",
+              }}
             >
               <Typography
-                variant="h5"
+                variant="h4"
                 style={{ textDecoration: "none", cursor: "pointer" }}
                 onClick={toMainPage}
               >
@@ -43,10 +43,14 @@ export const Header = () => {
               item
               lg={4}
               xs={4}
-              style={{ display: "flex", justifyContent: "flex-end" }}
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+              }}
             >
-              <Button variant="outlined" onClick={() => showListCv()}>
-                List CV's
+              <Button variant="outlined" onClick={toMainPage}>
+                List CVs
               </Button>
             </Grid>
           </Grid>

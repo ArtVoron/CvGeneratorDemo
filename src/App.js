@@ -5,10 +5,9 @@ import { Container, Grid } from "@material-ui/core";
 import { Header } from "./components/Header";
 import { Routers } from "./constants/Routers";
 import MainContentContainer from "./containers/MainContentContainer";
-import { ListCv } from "./pages/ListCVs";
-// import { MainContent } from "./pages/MainContent";
 import { PrintCv } from "./pages/PrintCV";
 import { ViewCv } from "./pages/ViewCV";
+import "./App.css";
 
 function App() {
   return (
@@ -16,9 +15,12 @@ function App() {
       <Grid container spacing={3}>
         <Header />
         <Switch>
-          <Route path={Routers.LIST_CV_PAGE_ROUTE} exact component={ListCv} />
           <Route path={Routers.PRINT_CV_PAGE_ROUTE} exact component={PrintCv} />
-          <Route path={Routers.VIEW_CV_PAGE_ROUTE} exact component={ViewCv} />
+          <Route
+            path={Routers.PREVIEW_CV_PAGE_ROUTE}
+            exact
+            component={ViewCv}
+          />
           <Route
             path={Routers.MAIN_PAGE_ROUTE}
             exact

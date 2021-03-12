@@ -2,3 +2,20 @@
   text-align: center;
 }
 
+
+.tableRow:hover {
+  text-decoration: none;
+  cursor: pointer;
+  background: #F9FBFC
+}
+
+.deleteIcon {
+  z-index: 999999999;
+}
+
+.deleteIcon:hover {
+  text-decoration: none;
+  cursor: pointer;
+  background: #EBEDFF
+}
+

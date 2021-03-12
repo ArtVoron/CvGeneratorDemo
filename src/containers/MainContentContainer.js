@@ -1,11 +1,18 @@
 import { connect } from "react-redux";
 
-// import { CreateCvModal } from "../components/modals/CreateCvModal";
 import { MainContent } from "../pages/MainContent";
-import { createCV } from "../redux/actions/actions";
+import {
+  createCV,
+  editCV,
+  deleteCV,
+  printCV,
+  previewCV,
+} from "../redux/actions/actions";
 
-const listCvs = (state) => ({
-  listCvs: state,
+const cvs = (state) => ({
+  cvs: state.cvs,
 });
 
-export default connect(listCvs, { createCV })(MainContent);
+export default connect(cvs, { createCV, editCV, deleteCV, printCV, previewCV })(
+  MainContent
+);
