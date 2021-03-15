@@ -4,7 +4,7 @@ import { Button, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
 
-import CVsTable from "../../components/CVcTable";
+import CVsTable from "../../components/CVsTable";
 import { CreateCvModal } from "../../components/modals/CreateCvModal";
 
 export const MainContent = ({
@@ -15,17 +15,17 @@ export const MainContent = ({
   previewCV,
   cvs,
 }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showCreateCvModal, setShowCreateCvModal] = useState(false);
 
-  const modalHandler = () => {
-    setShowModal(!showModal);
+  const createCvModalHandler = () => {
+    setShowCreateCvModal(!showCreateCvModal);
   };
 
   return (
     <>
       <CreateCvModal
-        open={showModal}
-        close={modalHandler}
+        open={showCreateCvModal}
+        close={createCvModalHandler}
         createCV={createCV}
       />
 
@@ -46,7 +46,7 @@ export const MainContent = ({
                   variant="contained"
                   color="primary"
                   startIcon={<AddIcon />}
-                  onClick={modalHandler}
+                  onClick={createCvModalHandler}
                 >
                   Create new CV
                 </Button>
@@ -69,13 +69,7 @@ export const MainContent = ({
 };
 
 MainContent.propTypes = {
-  cvs: PropTypes.arrayOf(
-    PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      experience: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  cvs: PropTypes.arrayOf(Object).isRequired,
   createCV: PropTypes.func.isRequired,
   editCV: PropTypes.func.isRequired,
   deleteCV: PropTypes.func.isRequired,

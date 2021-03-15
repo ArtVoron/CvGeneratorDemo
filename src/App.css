@@ -8,14 +8,15 @@
   cursor: pointer;
   background: #F9FBFC
 }
-
-.deleteIcon {
-  z-index: 999999999;
+.tableIcon {
+  padding: 0px 8px;
+  border-radius: 4px;
 }
 
-.deleteIcon:hover {
+.tableIcon:hover {
   text-decoration: none;
   cursor: pointer;
-  background: #EBEDFF
+  background: #EBEDFF;
+  
 }
 

@@ -23,11 +23,5 @@ export default function CvItem({ cv }) {
 }
 
 CvItem.propTypes = {
-  cv: PropTypes.arrayOf(
-    PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      experience: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  cv: PropTypes.objectOf().isRequired,
 };
