@@ -23,5 +23,5 @@ export default class PrintCvForm extends React.PureComponent {
 }
 
 PrintCvForm.propTypes = {
-  cv: PropTypes.objectOf().isRequired,
+  cv: PropTypes.objectOf(PropTypes.any).isRequired,
 };

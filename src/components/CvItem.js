@@ -23,5 +23,5 @@ export default function CvItem({ cv }) {
 }
 
 CvItem.propTypes = {
-  cv: PropTypes.objectOf().isRequired,
+  cv: PropTypes.objectOf(PropTypes.any).isRequired,
 };

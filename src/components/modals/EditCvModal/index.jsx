@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 import {
@@ -15,6 +14,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import DoneIcon from "@material-ui/icons/Done";
 import RemoveIcon from "@material-ui/icons/Remove";
+import PropTypes from "prop-types";
 
 // import { createCV } from "../../../redux/actions/actions";
 
@@ -243,4 +243,9 @@ export const EditCvModal = ({ open, close, createCV }) => {
       </DialogActions>
     </Dialog>
   );
+};
+EditCvModal.propTypes = {
+  open: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
+  createCV: PropTypes.func.isRequired,
 };

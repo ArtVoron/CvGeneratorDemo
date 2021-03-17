@@ -50,7 +50,7 @@ export const Header = () => {
               }}
             >
               <Button variant="outlined" onClick={toMainPage}>
-                List CVs
+                Resumes
               </Button>
             </Grid>
           </Grid>

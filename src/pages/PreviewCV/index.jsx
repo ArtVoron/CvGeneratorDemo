@@ -45,5 +45,5 @@ export const PreviewCV = ({ cv }) => {
 };
 
 PreviewCV.propTypes = {
-  cv: PropTypes.objectOf().isRequired,
+  cv: PropTypes.objectOf(PropTypes.any).isRequired,
 };

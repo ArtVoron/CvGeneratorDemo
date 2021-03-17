@@ -34,7 +34,9 @@ export const MainContent = ({
           <CardContent>
             <Grid container spacing={3}>
               <Grid item lg={9} xs={9}>
-                <Typography variant="h5">Basic CV's information</Typography>
+                <Typography variant="h5">
+                  Basic information about resumes
+                </Typography>
               </Grid>
               <Grid
                 item
@@ -48,7 +50,7 @@ export const MainContent = ({
                   startIcon={<AddIcon />}
                   onClick={createCvModalHandler}
                 >
-                  Create new CV
+                  Create new resume
                 </Button>
               </Grid>
             </Grid>

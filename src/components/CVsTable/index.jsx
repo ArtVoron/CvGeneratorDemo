@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 
-import { Button, Card, CardContent, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -41,12 +41,14 @@ const useStyles = makeStyles({
 });
 
 export default function CVsTable({ cvs, deleteCV }) {
-  const rows = cvs;
   const classes = useStyles();
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [showDeleteCvModal, setShowDeleteCvModal] = React.useState(false);
   const [idCvToDelete, setIdCvToDelete] = React.useState("");
+
+  const rows = cvs;
 
   const deleteCvModalHandler = (id) => {
     setIdCvToDelete(id);
@@ -100,7 +102,7 @@ export default function CVsTable({ cvs, deleteCV }) {
               : rows
             ).map((row) => (
               <TableRow
-                key={row.name}
+                key={row.id}
                 className="tableRow"
                 //   onClick={() => {
                 //     previewCv(row.id);
@@ -156,20 +158,6 @@ export default function CVsTable({ cvs, deleteCV }) {
                 ActionsComponent={Pagination}
               />
             </TableRow>
-            <Card>
-              <CardContent>
-                <Typography>List CV</Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    previewCv(1);
-                  }}
-                >
-                  View CV
-                </Button>
-              </CardContent>
-            </Card>
           </TableFooter>
         </Table>
       </TableContainer>

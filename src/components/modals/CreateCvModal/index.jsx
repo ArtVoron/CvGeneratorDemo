@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 import {
@@ -15,6 +14,8 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import DoneIcon from "@material-ui/icons/Done";
 import RemoveIcon from "@material-ui/icons/Remove";
+import { useFormik } from "formik";
+import PropTypes from "prop-types";
 
 // import { createCV } from "../../../redux/actions/actions";
 
@@ -34,6 +35,23 @@ const styles = {
 };
 
 export const CreateCvModal = ({ open, close, createCV }) => {
+  const formic = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      experience: "",
+    },
+    onSubmit: (values) => {
+      const newCV = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        experience: values.experience,
+      };
+      createCV(newCV);
+      close();
+    },
+  });
+
   const [countFieldSkills, setCountFieldSkills] = useState(2);
   const [countFieldProgects, setCountFieldProgects] = useState(2);
   const [countProgects] = useState(1);
@@ -49,22 +67,19 @@ export const CreateCvModal = ({ open, close, createCV }) => {
     }
   };
 
-  const handleForSubmit = (e) => {
-    const newCV = {
-      firstName: e.target.firstName.value,
-      lastName: e.target.lastName.value,
-      experience: e.target.experience.value,
-    };
+  // const handleForSubmit = (e) => {
+  //   debugger;
+  //   createCV(newCV);
+  // const skillsFields = [];
+  // const progectsFields = [];
+  // Array.from(Array(countFieldSkills).keys()).forEach((element) => {
+  //   debugger;
+  //   skillsFields.push(e.target[`skill${element}`].value);
+  // });
+  // };
 
-    debugger;
-    createCV(newCV);
-    // const skillsFields = [];
-    // const progectsFields = [];
-    // Array.from(Array(countFieldSkills).keys()).forEach((element) => {
-    //   debugger;
-    //   skillsFields.push(e.target[`skill${element}`].value);
-    // });
-  };
+  // eslint-disable-next-line no-console
+  console.log("Formik: ", formic.values);
 
   return (
     <Dialog maxWidth="md" open={open}>
@@ -74,7 +89,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
 
       <DialogContent style={styles.dialog}>
         <Grid container spacing={2}>
-          <form onSubmit={handleForSubmit}>
+          <form onSubmit={formic.handleSubmit}>
             <Grid item lg={12} xs={12}>
               <Grid container spacing={2}>
                 <Grid item lg={12} xs={12}>
@@ -88,6 +103,8 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                     name="firstName"
                     variant="outlined"
                     label="First name"
+                    onChange={formic.handleChange}
+                    value={formic.values.firstName}
                   />
                 </Grid>
                 <Grid item lg={3} xs={3}>
@@ -95,6 +112,8 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                     name="lastName"
                     variant="outlined"
                     label="Last Name"
+                    onChange={formic.handleChange}
+                    value={formic.values.lastName}
                   />
                 </Grid>
                 <Grid item lg={3} xs={3}>
@@ -102,6 +121,8 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                     name="experience"
                     variant="outlined"
                     label="Experience (years)"
+                    onChange={formic.handleChange}
+                    value={formic.values.experience}
                     inputProps={{
                       type: "number",
                       min: "0",
@@ -200,6 +221,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                           return (
                             <Grid item lg={3} xs={3}>
                               <TextField
+                                key={field}
                                 variant="outlined"
                                 name={`skill${field}`}
                                 label={`skill#${field + 1}`}
@@ -243,4 +265,10 @@ export const CreateCvModal = ({ open, close, createCV }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+CreateCvModal.propTypes = {
+  open: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
+  createCV: PropTypes.func.isRequired,
 };
