@@ -48,6 +48,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
         experience: values.experience,
       };
       // "test text"
+      // "test text2"
       createCV(newCV);
       close();
     },
