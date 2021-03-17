@@ -47,6 +47,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
         lastName: values.lastName,
         experience: values.experience,
       };
+      // "test text"
       createCV(newCV);
       close();
     },
