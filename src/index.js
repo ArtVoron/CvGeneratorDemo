@@ -8,7 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
 import { MuiTheme } from "./constants/MuiTheme";
-import { store, persistor } from "./redux/store/store";
+import { store, persistor } from "./redux/store/Store";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
