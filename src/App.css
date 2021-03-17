@@ -2,3 +2,21 @@
   text-align: center;
 }
 
+
+.tableRow:hover {
+  text-decoration: none;
+  cursor: pointer;
+  background: #F9FBFC
+}
+.tableIcon {
+  padding: 0px 8px;
+  border-radius: 4px;
+}
+
+.tableIcon:hover {
+  text-decoration: none;
+  cursor: pointer;
+  background: #EBEDFF;
+  
+}
+

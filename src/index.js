@@ -1,51 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { BrowserRouter } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { createStore } from "redux";
-import { saveState,loadState } from "./localStorage/localStorage";
+import { ThemeProvider } from "@material-ui/styles";
+import { PersistGate } from "redux-persist/integration/react";
 
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#3939BB',
-    },
-    secondary: {
-      main: '#4CAF50',
-    },
-    default: {
-      main: '#FAFAFA'
-    }
-  },
-});
-
-const persistedState=loadState();
-
-// const store = createStore(
-//   persistedState
-// )
-
-// store.subscribe(()=>{
-//   saveState(store.getState())
-// })
-
+import App from "./App";
+import { MuiTheme } from "./constants/MuiTheme";
+import { store, persistor } from "./redux/store/Store";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={MuiTheme}>
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>
   </ThemeProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
