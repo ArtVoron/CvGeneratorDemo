@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable prefer-const */
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 
 import {
@@ -11,13 +14,17 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import Chip from "@material-ui/core/Chip";
 import AddIcon from "@material-ui/icons/Add";
 import DoneIcon from "@material-ui/icons/Done";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { useFormik } from "formik";
+import { Formik, Form, FieldArray, Field, useFormik } from "formik";
+import ChipInput from "material-ui-chip-input";
 import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
+import * as Yup from "yup";
 
-// import { createCV } from "../../../redux/actions/actions";
+import ProjectItem from "../../ProjectItem";
 
 const styles = {
   button: {
@@ -34,13 +41,34 @@ const styles = {
   },
 };
 
+const project = {
+  id: uuidv4(),
+  position: "frontEnd",
+  experience: "2",
+  technologies: ["tech1", "tech2"],
+  description: "Something else",
+};
+
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  experience: "",
+  skills: [],
+  projects: [project, project],
+};
+
+const requiredField = "This field is required";
+
+const validationSchema = Yup.object({
+  firstName: Yup.string().required(requiredField),
+  lastName: Yup.string().required(requiredField),
+  experience: Yup.string().required(requiredField),
+  skills: Yup.array().min(1, "This field is required").required(requiredField),
+});
+
 export const CreateCvModal = ({ open, close, createCV }) => {
-  const formic = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      experience: "",
-    },
+  const formik = useFormik({
+    initialValues,
     onSubmit: (values) => {
       const newCV = {
         firstName: values.firstName,
@@ -48,11 +76,14 @@ export const CreateCvModal = ({ open, close, createCV }) => {
         experience: values.experience,
       };
       createCV(newCV);
+      formik.resetForm();
       close();
     },
+    validationSchema,
+    // validate,
   });
 
-  const [countFieldSkills, setCountFieldSkills] = useState(2);
+  // const [countFieldSkills, setCountFieldSkills] = useState(2);
   const [countFieldProgects, setCountFieldProgects] = useState(2);
   const [countProgects] = useState(1);
   //   const [error, setError] = useState(false);
@@ -60,7 +91,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
   const fieldsHadler = (e, fieldType) => {
     if (e > 1 && e < 9) {
       if (fieldType === "skill") {
-        setCountFieldSkills(e);
+        // setCountFieldSkills(e);
       } else {
         setCountFieldProgects(e);
       }
@@ -78,9 +109,25 @@ export const CreateCvModal = ({ open, close, createCV }) => {
   // });
   // };
 
-  // eslint-disable-next-line no-console
-  console.log("Formik: ", formic.values);
+  const handleAddChip = (chip) => {
+    formik.values.skills.push(chip);
+  };
 
+  const handleDeleteChip = (chip, index) => {
+    formik.setFieldValue(
+      "skills",
+      formik.values.skills.filter((skill) => skill !== chip)
+    );
+  };
+
+  console.log("VALUES", formik.values);
+  console.log("Error", formik.errors);
+  console.log("TOUCHED", formik.touched);
+
+  const closeModal = () => {
+    formik.resetForm(initialValues);
+    close();
+  };
   return (
     <Dialog maxWidth="md" open={open}>
       <DialogTitle>
@@ -89,7 +136,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
 
       <DialogContent style={styles.dialog}>
         <Grid container spacing={2}>
-          <form onSubmit={formic.handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <Grid item lg={12} xs={12}>
               <Grid container spacing={2}>
                 <Grid item lg={12} xs={12}>
@@ -103,37 +150,54 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                     name="firstName"
                     variant="outlined"
                     label="First name"
-                    onChange={formic.handleChange}
-                    value={formic.values.firstName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.firstName}
                   />
+                  {formik.touched.firstName && formik.errors.firstName ? (
+                    <Typography variant="caption" style={{ color: "red" }}>
+                      {formik.errors.firstName}
+                    </Typography>
+                  ) : null}
                 </Grid>
                 <Grid item lg={3} xs={3}>
                   <TextField
                     name="lastName"
                     variant="outlined"
                     label="Last Name"
-                    onChange={formic.handleChange}
-                    value={formic.values.lastName}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.lastName}
                   />
+                  {formik.touched.lastName && formik.errors.lastName ? (
+                    <Typography variant="caption" style={{ color: "red" }}>
+                      {formik.errors.lastName}
+                    </Typography>
+                  ) : null}
                 </Grid>
                 <Grid item lg={3} xs={3}>
                   <TextField
                     name="experience"
                     variant="outlined"
                     label="Experience (years)"
-                    onChange={formic.handleChange}
-                    value={formic.values.experience}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.experience}
                     inputProps={{
                       type: "number",
                       min: "0",
                     }}
                   />
+                  {formik.touched.experience && formik.errors.experience ? (
+                    <Typography variant="caption" style={{ color: "red" }}>
+                      {formik.errors.experience}
+                    </Typography>
+                  ) : null}
                 </Grid>
-
                 <Grid item lg={9} xs={9}>
                   <Typography variant="h6">Professional skills</Typography>
                 </Grid>
-                <Grid item lg={3} xs={3} style={styles.buttonsGrid}>
+                {/* <Grid item lg={3} xs={3} style={styles.buttonsGrid}>
                   <Button
                     variant="contained"
                     size="small"
@@ -152,11 +216,60 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                   >
                     <AddIcon />
                   </Button>
-                </Grid>
+                </Grid> */}
                 <Grid item lg={12} xs={12}>
-                  <Divider />
+                  <ChipInput
+                    name="skills"
+                    fullWidth
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.skills}
+                    onAdd={(chip) => handleAddChip(chip)}
+                    onDelete={(chip, index) => handleDeleteChip(chip, index)}
+                  />
+                  {formik.touched.skills && formik.errors.skills ? (
+                    <Typography variant="caption" style={{ color: "red" }}>
+                      {formik.errors.skills}
+                    </Typography>
+                  ) : null}
                 </Grid>
-                {Array.from(Array(countFieldSkills).keys()).map((element) => {
+
+                <Formik
+                  initialValues={initialValues}
+                  onSubmit={(values) => console.log(values)}
+                  render={({ values }) => (
+                    <Form>
+                      <FieldArray
+                        name="projects"
+                        render={(arrayHelpers) => (
+                          <Grid container spacing={3}>
+                            {values.projects.map((p, index) => (
+                              <Grid item lg={12} xs={12}>
+                                <Field
+                                  key={p.id}
+                                  name={`projects.${index}`}
+                                  component={ProjectItem}
+                                />
+                                <Button
+                                  onClick={() => arrayHelpers.remove(index)}
+                                >
+                                  -
+                                </Button>
+                              </Grid>
+                            ))}
+                            <Button
+                              type="button"
+                              onClick={() => arrayHelpers.push("AAAAAAAA")}
+                            >
+                              +
+                            </Button>
+                          </Grid>
+                        )}
+                      />
+                    </Form>
+                  )}
+                />
+                {/* {Array.from(Array(countFieldSkills).keys()).map((element) => {
                   return (
                     <Grid item lg={3} xs={3}>
                       <TextField
@@ -166,7 +279,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
                       />
                     </Grid>
                   );
-                })}
+                })} */}
               </Grid>
             </Grid>
 
@@ -261,7 +374,7 @@ export const CreateCvModal = ({ open, close, createCV }) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={close}>Close</Button>
+        <Button onClick={closeModal}>Close</Button>
       </DialogActions>
     </Dialog>
   );
